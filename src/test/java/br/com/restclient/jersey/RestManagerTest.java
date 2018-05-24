@@ -1,8 +1,12 @@
-package br.com.restclient;
+package br.com.restclient.jersey;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import br.com.restclient.jersey.RestClient;
+import br.com.restclient.jersey.RestManager;
+import br.com.restclient.jersey.RestRequest;
 
 /**
  * Test class for {@link RestManager}. The server must be configured for running

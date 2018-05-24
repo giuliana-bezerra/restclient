@@ -1,4 +1,4 @@
-package br.com.restclient;
+package br.com.restclient.jersey;
 
 /**
  * Entity that encapsulates attributes required for REST service requests.

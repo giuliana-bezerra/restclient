@@ -1,4 +1,4 @@
-package br.com.restclient;
+package br.com.restclient.jersey;
 
 /**
  * Manager responsible for making calls to the rest client .
@@ -7,6 +7,9 @@ package br.com.restclient;
  *
  */
 public class RestManager {
+	private RestManager() {
+		// DO NOTHING.
+	}
 
 	public static void manageRequest(RestRequest restRequest) {
 		if (restRequest.isGetRequest())

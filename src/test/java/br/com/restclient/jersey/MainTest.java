@@ -1,8 +1,12 @@
-package br.com.restclient;
+package br.com.restclient.jersey;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import br.com.restclient.jersey.ClientMessage;
+import br.com.restclient.jersey.JSONPathUtil;
+import br.com.restclient.jersey.Main;
 
 /**
  * Test class which calls the main method for testing the operation options. The

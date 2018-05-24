@@ -1,4 +1,7 @@
-package br.com.restclient;
+package br.com.restclient.jersey;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -12,8 +15,13 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
  *
  */
 public class RestClient {
-	private static String APPLICATION_JSON = "application/json";
-	private static String HTTP_ERROR_CODE = "HTTP error code : ";
+	private static final Logger LOGGER = Logger.getLogger(RestClient.class.getName());
+	private static final String APPLICATION_JSON = "application/json";
+	private static final String HTTP_ERROR_CODE = "HTTP error code : ";
+
+	private RestClient() {
+		// DO NOTHING.
+	}
 
 	public static String executeGetCall(RestRequest restRequest) {
 		ClientResponse response = getWebResource(restRequest).accept(APPLICATION_JSON).get(ClientResponse.class);
@@ -30,7 +38,7 @@ public class RestClient {
 
 	private static String getOutputFromResponse(ClientResponse response) {
 		String output = response.getEntity(String.class);
-		System.out.println(output);
+		LOGGER.log(Level.FINEST, output);
 		return output;
 	}
 
@@ -43,7 +51,7 @@ public class RestClient {
 
 	private static void validateGetResponse(ClientResponse response) {
 		if (isInvalidStatusForGet(response))
-			throw new RuntimeException(HTTP_ERROR_CODE + response.getStatus());
+			throw new RestRuntimeException(HTTP_ERROR_CODE + response.getStatus());
 	}
 
 	private static boolean isInvalidStatusForGet(ClientResponse response) {
@@ -52,7 +60,7 @@ public class RestClient {
 
 	private static void validatePostResponse(ClientResponse response) {
 		if (isInvalidStatusForPost(response))
-			throw new RuntimeException(HTTP_ERROR_CODE + response.getStatus());
+			throw new RestRuntimeException(HTTP_ERROR_CODE + response.getStatus());
 	}
 
 	private static boolean isInvalidStatusForPost(ClientResponse response) {

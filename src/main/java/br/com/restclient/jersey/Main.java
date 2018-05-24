@@ -1,10 +1,12 @@
-package br.com.restclient;
+package br.com.restclient.jersey;
 
-import static br.com.restclient.ClientMessage.*;
-import static br.com.restclient.ClientOptions.*;
+import static br.com.restclient.jersey.ClientMessage.*;
+import static br.com.restclient.jersey.ClientOptions.*;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Generic REST client. The program gets 4 parameters: <br/>
@@ -33,6 +35,7 @@ import java.util.List;
  *
  */
 public class Main {
+	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 	private static RestRequest restRequest;
 
 	public static void main(String[] args) {
@@ -47,7 +50,7 @@ public class Main {
 	}
 
 	private static void showHelpMessage() {
-		System.out.println(HELP_MESSAGE);
+		LOGGER.info(HELP_MESSAGE);
 	}
 
 	private static void buildRequest(List<String> args) {
@@ -70,7 +73,7 @@ public class Main {
 
 	private static void validateArguments(List<String> args) {
 		if (isInvalidArgs(args))
-			throw new RuntimeException(ILLEGAL_ARGUMENT_MESSAGE);
+			throw new RestRuntimeException(ILLEGAL_ARGUMENT_MESSAGE);
 		validateOptions(args);
 		validateOptionArgs(args);
 	}
@@ -78,14 +81,14 @@ public class Main {
 	private static void validateOptions(List<String> args) {
 		for (String arg : args) {
 			if (isOption(arg) && !OPTIONS.contains(arg))
-				throw new RuntimeException(arg + ": " + ILLEGAL_OPTIONS_MESSAGE);
+				throw new RestRuntimeException(arg + ": " + ILLEGAL_OPTIONS_MESSAGE);
 		}
 	}
 
 	private static void validateOptionArgs(List<String> args) {
 		for (String option : OPTIONS) {
 			if (isInvalidOptionArgs(args, option))
-				throw new RuntimeException(option + ": " + INVALID_OPTION_VALUE);
+				throw new RestRuntimeException(option + ": " + INVALID_OPTION_VALUE);
 		}
 	}
 
@@ -99,7 +102,7 @@ public class Main {
 	}
 
 	private static boolean isInvalidArgs(List<String> args) {
-		return args.size() < 1 || isOption(args.get(0));
+		return args.isEmpty() || isOption(args.get(0));
 	}
 
 	private static boolean isOption(String texto) {

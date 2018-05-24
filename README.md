@@ -7,10 +7,10 @@
 3. [Usage](#usage)
 4. [Reference](#reference)
 5. [Limitations](#limitations)
-6. [Develpment](#development)
+6. [Development](#development)
 
 ## Overview
-This app configures a generic REST client for CouchDB which is responsible for performing calls to a target server.
+This app configures a generic REST client using Jersey (Sun) which is responsible for performing calls to a target server.
 
 ## Setup
 This app depends on:
@@ -77,6 +77,6 @@ See javadoc.
 ## Limitations
 This app only supports GET and POST operations.
 
-## Develpment
+## Development
 This app implements a base client that allows remote calls to a REST service. Contributions could be adding support to other operations and
 authentication strategies.

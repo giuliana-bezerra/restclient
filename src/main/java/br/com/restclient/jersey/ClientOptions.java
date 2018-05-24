@@ -1,4 +1,4 @@
-package br.com.restclient;
+package br.com.restclient.jersey;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +14,9 @@ public class ClientOptions {
 	public static final String OPTION_PASSWORD = "-p";
 	public static final String OPTION_JSON_PATH = "-j";
 	public static final String OPTION_HELP = "-h";
-	public static final List<String> OPTIONS = Arrays
-			.asList(new String[] { OPTION_USER, OPTION_PASSWORD, OPTION_JSON_PATH });
+	protected static final List<String> OPTIONS = Arrays.asList(OPTION_USER, OPTION_PASSWORD, OPTION_JSON_PATH);
+
+	private ClientOptions() {
+		// DO NOTHING.
+	}
 }

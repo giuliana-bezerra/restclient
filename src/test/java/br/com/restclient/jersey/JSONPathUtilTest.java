@@ -1,8 +1,10 @@
-package br.com.restclient;
+package br.com.restclient.jersey;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import br.com.restclient.jersey.JSONPathUtil;
 
 /**
  * Test class for JSONPathUtil methods.
